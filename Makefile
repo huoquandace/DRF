@@ -34,3 +34,10 @@ app:
 	echo from configs.settings import INSTALLED_APPS > apps\$(ARGS)\settings.py
 	echo. >> apps\$(ARGS)\settings.py
 	echo INSTALLED_APPS += ['$(ARGS)',] >> apps\$(ARGS)\settings.py
+
+# Push
+.PHONY: git
+git:
+	git add .
+	git commit -m up
+	git push
