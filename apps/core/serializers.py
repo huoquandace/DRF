@@ -20,25 +20,6 @@ class VendorDetailSerializer(serializers.ModelSerializer):
         self.Meta.depth = 1
 # ------------------------------------------------------------------------------
 
-# Product
-# ------------------------------------------------------------------------------
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['id', 'category', 'vendor', 'title', 'detail', 'price']
-    def __init__(self, *args, **kwargs):
-        super(ProductSerializer, self).__init__(*args, **kwargs)
-        self.Meta.depth = 1
-
-class ProductDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['id', 'category', 'vendor', 'title', 'detail', 'price']
-    def __init__(self, *args, **kwargs):
-        super(ProductDetailSerializer, self).__init__(*args, **kwargs)
-        self.Meta.depth = 1
-# ------------------------------------------------------------------------------
-
 # Customer
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,6 +45,56 @@ class CustomerAddressSerializer(serializers.ModelSerializer):
         fields = ['id', 'customer', 'address', 'default_address']
     def __init__(self, *args, **kwargs):
         super(CustomerAddressSerializer, self).__init__(*args, **kwargs)
+        self.Meta.depth = 1
+# ------------------------------------------------------------------------------
+
+# Category
+# ------------------------------------------------------------------------------
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'title', 'detail']
+    def __init__(self, *args, **kwargs):
+        super(CategorySerializer, self).__init__(*args, **kwargs)
+        self.Meta.depth = 1
+
+class CategoryDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'title', 'detail']
+    def __init__(self, *args, **kwargs):
+        super(CategoryDetailSerializer, self).__init__(*args, **kwargs)
+        self.Meta.depth = 1
+# ------------------------------------------------------------------------------
+
+# Product
+# ------------------------------------------------------------------------------
+class ProductSerializer(serializers.ModelSerializer):
+    product_ratings = serializers.StringRelatedField(many=True, read_only=True)
+    class Meta:
+        model = Product
+        fields = ['id', 'category', 'vendor', 'title', 'detail', 'price', 'product_ratings']
+    def __init__(self, *args, **kwargs):
+        super(ProductSerializer, self).__init__(*args, **kwargs)
+        self.Meta.depth = 1
+
+class ProductDetailSerializer(serializers.ModelSerializer):
+    product_ratings = serializers.StringRelatedField(many=True, read_only=True)
+    class Meta:
+        model = Product
+        fields = ['id', 'category', 'vendor', 'title', 'detail', 'price', 'product_ratings']
+    def __init__(self, *args, **kwargs):
+        super(ProductDetailSerializer, self).__init__(*args, **kwargs)
+        self.Meta.depth = 1
+# ------------------------------------------------------------------------------
+
+# Product Rating
+class ProductRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductRating
+        fields = ['id', 'customer', 'product', 'rating', 'reviews', 'add_time']
+    def __init__(self, *args, **kwargs):
+        super(ProductRatingSerializer, self).__init__(*args, **kwargs)
         self.Meta.depth = 1
 # ------------------------------------------------------------------------------
 

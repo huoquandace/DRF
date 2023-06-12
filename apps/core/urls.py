@@ -6,6 +6,10 @@ from rest_framework.routers import DefaultRouter
 from core.views import *
 
 
+router = DefaultRouter()
+router.register('customer-addresses', CustomerAddressViewSet)
+router.register('product-ratings', ProductRatingViewSet)
+
 urlpatterns = [
     # Authentication
     # ------------------------------------------------------------------------------
@@ -19,6 +23,12 @@ urlpatterns = [
     # ------------------------------------------------------------------------------
     path('vendors/', VendorList.as_view()),
     path('vendors/<int:pk>/', VendorDetail.as_view()),
+    # ------------------------------------------------------------------------------
+
+    # Category
+    # ------------------------------------------------------------------------------
+    path('categorys/', CategoryList.as_view()),
+    path('categorys/<int:pk>/', CategoryDetail.as_view()),
     # ------------------------------------------------------------------------------
 
     # Product
@@ -40,8 +50,5 @@ urlpatterns = [
     # ------------------------------------------------------------------------------
 
 ]
-
-router = DefaultRouter()
-router.register('address', CustomerAddressViewSet)
 
 urlpatterns += router.urls

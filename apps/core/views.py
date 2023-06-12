@@ -17,18 +17,6 @@ class VendorDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = VendorDetailSerializer
 # ------------------------------------------------------------------------------
 
-# Product
-# ------------------------------------------------------------------------------
-class ProductList(ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    pagination_class = LimitOffsetPagination
-
-class ProductDetail(RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductDetailSerializer
-# ------------------------------------------------------------------------------
-
 # Customer
 # ------------------------------------------------------------------------------
 class CustomerList(ListCreateAPIView):
@@ -45,6 +33,36 @@ class CustomerDetail(RetrieveUpdateDestroyAPIView):
 class CustomerAddressViewSet(ModelViewSet):
     queryset = CustomerAddress.objects.all()
     serializer_class = CustomerAddressSerializer
+# ------------------------------------------------------------------------------
+
+# Category
+# ------------------------------------------------------------------------------
+class CategoryList(ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class CategoryDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategoryDetailSerializer
+# ------------------------------------------------------------------------------
+
+# Product
+# ------------------------------------------------------------------------------
+class ProductList(ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    pagination_class = LimitOffsetPagination
+
+class ProductDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductDetailSerializer
+# ------------------------------------------------------------------------------
+
+# Product Rating
+# ------------------------------------------------------------------------------
+class ProductRatingViewSet(ModelViewSet):
+    queryset = ProductRating.objects.all()
+    serializer_class = ProductRatingSerializer
 # ------------------------------------------------------------------------------
 
 # Order
