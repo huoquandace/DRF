@@ -1,4 +1,5 @@
 from rest_framework.generics import *
+from rest_framework.pagination import *
 
 from core.serializers import *
 from core.models import *
@@ -20,6 +21,7 @@ class VendorDetail(RetrieveUpdateDestroyAPIView):
 class ProductList(ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    pagination_class = LimitOffsetPagination
 
 class ProductDetail(RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
@@ -43,20 +45,9 @@ class OrderList(ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
-class OrderDetail(RetrieveUpdateDestroyAPIView):
-    queryset = Order.objects.all()
+class OrderDetail(ListAPIView):
+    # queryset = Order.objects.all()
     serializer_class = OrderDetailSerializer
-# ------------------------------------------------------------------------------
-
-# OrderItem
-# ------------------------------------------------------------------------------
-class OrderItemList(ListCreateAPIView):
-    queryset = OrderItem.objects.all()
-    serializer_class = OrderItemSerializer
-
-class OrderItemDetail(RetrieveUpdateDestroyAPIView):
-    # queryset = OrderItem.objects.all()
-    serializer_class = OrderItemDetailSerializer
     def get_queryset(self):
         order_id = self.kwargs['pk']
         order = Order.objects.get(id=order_id)
