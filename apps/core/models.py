@@ -29,6 +29,13 @@ class Customer(models.Model):
     def __str__(self):
         return self.user.username
     
+class CustomerAddress(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True, related_name='customer_addresses')
+    address = models.TextField(null=True, blank=True)
+    default_address = models.BooleanField(default=False, null=True, blank=True)
+    def __str__(self):
+        return self.address
+    
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
     order_time = models.DateTimeField(auto_now_add=True)

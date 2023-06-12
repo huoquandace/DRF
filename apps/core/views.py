@@ -1,3 +1,4 @@
+from rest_framework.viewsets import *
 from rest_framework.generics import *
 from rest_framework.pagination import *
 
@@ -37,6 +38,13 @@ class CustomerList(ListCreateAPIView):
 class CustomerDetail(RetrieveUpdateDestroyAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerDetailSerializer
+# ------------------------------------------------------------------------------
+
+# Customer Address
+# ------------------------------------------------------------------------------
+class CustomerAddressViewSet(ModelViewSet):
+    queryset = CustomerAddress.objects.all()
+    serializer_class = CustomerAddressSerializer
 # ------------------------------------------------------------------------------
 
 # Order
